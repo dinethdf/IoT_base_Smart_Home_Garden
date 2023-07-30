@@ -1,0 +1,48 @@
+//    int ledStatus2 = Firebase.getInt("ledStatus2");
+//  if(ledStatus2 == 1){
+//    digitalWrite(ledPower2, HIGH);
+//  } else {
+//    digitalWrite(ledPower2, LOW);
+//  }
+//  
+//    int ledStatus2 = Firebase.getInt("ledStatus3");
+//  if(ledStatus2 == 1){
+//    digitalWrite(ledPower2, HIGH);
+//  } else {
+//    digitalWrite(ledPower2, LOW);
+//  }
+//  
+//    int ledStatus2 = Firebase.getInt("ledStatus4");
+//  if(ledStatus2 == 1){
+//    digitalWrite(ledPower2, HIGH);
+//  } else {
+//    digitalWrite(ledPower2, LOW);
+//  }
+
+#####################################################
+
+      // Clears the trigPin
+digitalWrite(trigPin, LOW);
+delayMicroseconds(2);
+
+// Sets the trigPin on HIGH state for 10 micro seconds
+digitalWrite(trigPin, HIGH);
+delayMicroseconds(10);
+digitalWrite(trigPin, LOW);
+
+duration = pulseIn(echoPin, HIGH);
+distance= duration*0.034/2;
+Firebase.setInt("Value",distance);
+Serial.println(distance);
+ String low_limit = Firebase.getString("low_limit");
+ String upper_limit = Firebase.getString("upper_limit");
+ Serial.println("dasdwrwf");
+ Serial.println(low_limit);
+ Serial.println(upper_limit);
+  if(low_limit.toInt() > distance){
+    digitalWrite(ledPower1, HIGH);
+      digitalWrite(ledPower2, LOW);
+  } else if (upper_limit.toInt() < distance){
+    digitalWrite(ledPower1, LOW);
+    digitalWrite(ledPower2, HIGH);
+  }
