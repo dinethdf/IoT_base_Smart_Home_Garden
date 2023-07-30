@@ -1,0 +1,355 @@
+    <!DOCTYPE html>
+    <html >
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Smart Home Garden Dashbord</title>
+
+        <!-- BOOTSTRAP STYLES-->
+        <link href="css/bootstrap.css" rel="stylesheet" />
+        <!-- FONTAWESOME STYLES-->
+        <link href="css/font-awesome.css" rel="stylesheet" />
+        <!-- CUSTOM STYLES-->
+        <link href="css/custom.css" rel="stylesheet" />
+        <!-- GOOGLE FONTS-->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+        <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+    <script src="script.js"></script>
+    <script src="water_system.js"></script>
+
+<script >  $(document).ready(function(){
+
+                 $("#light").hide();
+                $("#water").hide();
+                $("#firstside").show();
+
+              $("#wat").click(function(){
+                $("#water").show();
+                $("#light").hide();
+             var firebaselightsys = firebase.database().ref().child("system_set");
+                firebaselightsys.set(1);
+              });
+
+              $("#lit").click(function(){
+               var firebaselightsys = firebase.database().ref().child("system_set");
+                 firebaselightsys.set(0);
+                $("#light").show();
+                $("#water").hide();
+
+              });
+            $("#home").click(function(){
+                $("#light").hide();
+                $("#water").hide();
+                
+              });
+             });
+
+
+             $(document).ready(function(){
+                $("#lim_set").hide();
+
+              $("#lim_on").click(function(){
+                $("#lim_set").show();
+               
+              });
+
+              $("#h_lim").click(function(){
+              
+            $("#lim_set").hide();
+              });
+           
+             });
+             
+      </script>
+
+
+    </head>
+    <body>
+        <div id="wrapper">
+            <div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="adjust-nav">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <!-- <a class="navbar-brand" href="#"><i class="fa fa-square-o "></i>&nbsp;TWO PAGE</a> -->
+                    </div>
+                   
+
+                </div>
+            </div>
+            <!-- /. NAV TOP  -->
+            <nav class="navbar-default navbar-side" role="navigation">
+                <div class="sidebar-collapse">
+                    <ul class="nav" id="main-menu">
+                        <li class="text-center user-image-back">
+    <!--                         <img src="assets/img/find_user.png" class="img-responsive" /> -->
+                        </li>
+                        <li>
+                            <a href="index.html"><i class="fa fa-desktop "></i>Dashboard</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <!-- /. NAV SIDE  -->
+            
+
+            <div id="page-wrapper">
+                <div id="page-inner">
+                    <div class="row">
+                        <div class="col-md-12" style="text-align: center;">
+                            <h2>Smart Home Garden</h2>
+                        </div>
+                    </div>
+       <!-- ######################################################## -->
+                    <div class="row">
+                        <div class="col-md-12">
+                           <!--  <h5>Buttons Samples</h5> -->
+                            <!-- <a href="#" class="btn btn-default">default</a> -->
+                            <button id="home" class="btn btn-info">Home</button>
+<!--                             <button id="wat"  class="btn btn-primary">Watering System</button>
+                            <button id="lit"   class="btn btn-success">Light Controle</button> -->
+                           
+                            <br /> 
+                        </div>
+                    </div>
+
+                    <hr />
+
+  <!-- Watering System Home test -->
+                    <div class="row" id="firstside">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-1"></div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-10">
+                            <h3 style="text-align: center;"><b> Welcome Smart home Garden Control Panel</b></h3 >
+ <br>
+                            <br> <br>
+                            <br>
+                            <button id="wat"  class="btn btn-primary">Watering System</button>
+                         
+                           
+             <span style="padding-left: 50px;"></span>
+                             <button id="lit"   class="btn btn-success">Light Controle</button>
+                        </div>
+                    </div>
+  <!-- Watering System ####################### -->
+                    <div class="row" id="water">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-1"></div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-10">
+                            <h3 style="text-align: center;"><b> Moisture Level</b></h3 >
+                            <div class="panel panel-primary text-center no-boder bg-color-blue">
+                                <div class="panel-body">
+                                   <i class="fa fa-tree fa-5x" aria-hidden="true"></i>  
+                                    <h4 style="color: black;">Water level :- <b><span style="color: lightgray;" id="sensval"></span> %</b> </h4>
+                                    <h6 style="color: black;">Set Limit - <b><span style="color: yellow;" id="lim_val"></span> </b> </h6>
+                                    <h6 id="lim_val2"></h6>
+                                </div>
+                                  <!-- Watering linit set and controling ####################### -->
+                                <div class="panel-footer back-footer-blue" id="con_set">
+                                     <h4 ><span style="color: yellow;" id="water_moter_stat"> </span> <span style="color: yellow;" id="water_moter_auto"> </span> </h4>
+                             <div id="on_off_motor">
+                                <button class="btn btn-danger "  id="water_moter_on" style="margin: 5px;"  >Start Motor</button>
+                                     <button class="btn btn-primary" id="water_moter_off"  style="margin: 5px;"  >Stop Motor</button>
+                                     <br></div> 
+
+                                    <button class="btn btn-success" style="margin: 5px;" id="lim_on">Set Limit</button>       
+                               <button class="btn btn-success" style="margin: 5px;" type="button" id="lim_off"   onclick="set_limit_off()">Off Set Limit</button><br>
+                               <div id="lim_motor_onoff">
+                                <button class="btn btn-danger "  id="lim_set_moter_on" style="margin: 5px;" onclick="limit_m_on()">ON Motor In Limit</button>
+                                     <button class="btn btn-primary" id="lim_set_moter_off"  style="margin: 5px;" onclick="limit_m_off()">OFF Motor In Limit</button></div>
+
+
+                                     <button class="btn btn-danger" style="margin: 5px;" id="sys_off"  onclick="system_off()">Off System</button>
+                                     <button class="btn btn-primary" style="margin: 5px;" id="sys_on"  onclick="system_on()">ON System</button>
+
+                                 
+                                  
+                                
+                                </div>
+                                <hr>
+                                <div class="panel-footer back-footer-blue" id="lim_set">
+                                     <h4 style="text-align: left;" >
+                                      <button class="btn btn-warning" id="h_lim">Go Control Panel </button></h4>
+
+                                     
+                                <form>
+                                                    <input type="number" id="low_lim"  style="color: black;"  placeholder="Lower Limit"> 
+                                                    <input type="number" id="up_lim" style="color: black;"  placeholder="Upper Limit">
+                                                    <br> <br>
+                                                    <button class="btn btn-primary" type="button" onclick="set_limit()"> Submit </button>
+                                 </form> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                        <!-- Light ####################### -->
+                        <div class="row" id="light">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-10">
+                            <h3 style="text-align: center;"><b> Light System</b></h3 >
+
+                <!-- ############  LIGT1 01  #################### -->
+                
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="panel panel-primary text-center no-boder bg-color-blue">
+                                <div class="panel-body">
+                                 <div class="panel-footer back-footer-blue">
+                                     <h4 style="text-align: center;"> Left Side Light Set</h4 >
+
+                                <span id="state_led_1"><img style='height: 75px;' src='https://as2.ftcdn.net/jpg/01/66/86/29/500_F_166862953_6Vy6pir6kahx4x6B5c9saPbwQ6yqNAnK.jpg'></span> <br><br>  
+                                <button class="btn btn-danger" id="btled1_1on" style="margin: 5px;" > Bulb 1 </button>
+                                <button class="btn btn-danger" id="btled1_2on" style="margin: 5px;" > Bulb 2</button>
+                                <button class="btn btn-danger" id="btled1_3on" style="margin: 5px;" > Bulb 3</button>
+                                <button class="btn btn-info" id="btled1_off" style="margin: 5px;" > OFF </button>
+                                 
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ############  LIGT1 02  #################### -->
+                
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="panel panel-primary text-center no-boder bg-color-blue">
+                                <div class="panel-body">
+                                 <div class="panel-footer back-footer-blue">
+                                     <h4 style="text-align: center;"> Right Side Light Set</h4 >
+
+                                <span id="state_led_2"><img style='height: 75px;' src='https://as2.ftcdn.net/jpg/01/66/86/29/500_F_166862953_6Vy6pir6kahx4x6B5c9saPbwQ6yqNAnK.jpg'></span> <br><br>  
+                                <button class="btn btn-danger" id="btled2_1on" style="margin: 5px;" > Bulb 1 </button>
+                                <button class="btn btn-danger" id="btled2_2on" style="margin: 5px;" >  Bulb 2 </button>
+                                <button class="btn btn-danger" id="btled2_3on" style="margin: 5px;" > Bulb 3 </button>
+                                <button class="btn btn-info" id="btled2_off" style="margin: 5px;" > OFF </button>
+                                 
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ############  LIGT1 03  #################### -->
+                
+<!--                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="panel panel-primary text-center no-boder bg-color-blue">
+                                <div class="panel-body">
+                                 <div class="panel-footer back-footer-blue">
+                                     <h4 style="text-align: center;"> Light 3</h4 >
+
+                                <span id="state_led_3"><img style='height: 75px;' src='https://as2.ftcdn.net/jpg/01/66/86/29/500_F_166862953_6Vy6pir6kahx4x6B5c9saPbwQ6yqNAnK.jpg'></span> <br><br>  
+                                <button class="btn btn-danger" id="btled3_on" style="margin: 5px;" > ON </button>
+                                <button class="btn btn-info" id="btled3_off" style="margin: 5px;" > OFF </button>
+                                 
+                                </div>
+                                </div>
+                            </div>
+                        </div>  -->
+
+<!-- ############  LIGT1 04  #################### -->
+                <!-- 
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="panel panel-primary text-center no-boder bg-color-blue">
+                                <div class="panel-body">
+                                 <div class="panel-footer back-footer-blue">
+                                     <h4 style="text-align: center;"> Light 4</h4 >
+
+                                <span id="state_led_4"><img style='height: 75px;' src='https://as2.ftcdn.net/jpg/01/66/86/29/500_F_166862953_6Vy6pir6kahx4x6B5c9saPbwQ6yqNAnK.jpg'></span> <br><br>  
+                                <button class="btn btn-danger" id="btled4_on" style="margin: 5px;" > ON </button>
+                                <button class="btn btn-info" id="btled4_off" style="margin: 5px;" > OFF </button>
+                                 
+                                </div>
+                                </div>
+                            </div>
+                        </div> -->
+
+<!-- ############  POND  #################### -->
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-1"></div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" >
+
+                            <div class="panel panel-primary text-center no-boder bg-color-blue" >
+                                <div class="panel-body" style="background-color: yellow;">
+                                 <div class="panel-footer back-footer-blue">
+                                     <h4 style="text-align: center;"> Pond Moter</h4 >
+
+                                <span id="pond_satat"><img style='height: 75px;' src='https://as2.ftcdn.net/jpg/01/66/86/29/500_F_166862953_6Vy6pir6kahx4x6B5c9saPbwQ6yqNAnK.jpg'></span> <br><br>  
+                                <button class="btn btn-danger" id="pond_on" style="margin: 5px;" > ON </button>
+                                <button class="btn btn-info" id="pond_off" style="margin: 5px;" > OFF </button>
+                                 
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+<!--                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="panel panel-primary text-center no-boder bg-color-blue">
+                                <div class="panel-body">
+                                 <div class="panel-footer back-footer-blue">
+                                     <h4 style="text-align: center;"> Light 2</h4 >
+                                         <span id="state1"><img style="height: 75px;" src="https://image.shutterstock.com/image-vector/vector-illustration-light-bulb-pop-260nw-679609204.jpg" > </span> <br>    <br>  
+                                  <button class="btn btn-danger"  style="margin: 5px;" onclick="send(3)">ON</button>
+                                   <button class="btn btn-info"  style="margin: 5px;" onclick="send(4)">OFF</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="panel panel-primary text-center no-boder bg-color-blue">
+                                <div class="panel-body">
+                                 <div class="panel-footer back-footer-blue">
+                                     <h4 style="text-align: center;"> Light 3</h4 >
+                                         <span id="state2"><img style="height: 75px;" src="https://image.shutterstock.com/image-vector/vector-illustration-light-bulb-pop-260nw-679609204.jpg" > </span> <br>    <br>  
+                                  <button class="btn btn-danger" style="margin: 5px;" onclick="send(5)">ON</button>
+                                   <button class="btn btn-info" style="margin: 5px;" onclick="send(6)">OFF</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="panel panel-primary text-center no-boder bg-color-blue">
+                                <div class="panel-body">
+                                 <div class="panel-footer back-footer-blue">
+                                     <h4 style="text-align: center;"> Light 4</h4 >
+                                         <span id="state3"><img style="height: 75px;" src="https://image.shutterstock.com/image-vector/vector-illustration-light-bulb-pop-260nw-679609204.jpg" > </span> <br>    <br>  
+                                  <button class="btn btn-danger" style="margin: 5px;" onclick="send(7)">ON</button>
+                                   <button class="btn btn-info" style="margin: 5px;" onclick="send(8)">OFF</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div> -->
+  
+
+                        </div>
+                    </div>
+
+   <!--     <img style='height: 75px;' src='https://image.shutterstock.com/image-vector/vector-illustration-light-bulb-pop-260nw-679609204.jpg' >      -->   
+                    <!-- ######################################################## -->
+
+
+                </div>
+                <!-- /. PAGE INNER  -->
+            </div>
+            <!-- /. PAGE WRAPPER  -->
+        </div>
+      
+
+
+        <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+        <!-- JQUERY SCRIPTS -->
+        <script src="js/jquery-1.10.2.js"></script>
+        <!-- BOOTSTRAP SCRIPTS -->
+        <script src="js/bootstrap.min.js"></script>
+        <!-- METISMENU SCRIPTS -->
+        <script src="js/jquery.metisMenu.js"></script>
+        <!-- CUSTOM SCRIPTS -->
+        <script src="js/custom.js"></script>
+
+
+    </body>
+    </html>
