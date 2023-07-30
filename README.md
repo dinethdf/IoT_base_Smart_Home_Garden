@@ -41,11 +41,5 @@ The IoT Garden Management System is a sophisticated and efficient solution that 
 - [Installation](#installation)
 - [Usage](#usage)
 - [Configuration](#configuration)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
 
-## Installation
-
-Provide step-by-step instructions on how to install and set up your project. Include any dependencies that need to be installed and how to install them.
 
