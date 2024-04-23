@@ -6,8 +6,9 @@
 The IoT Garden Management System is a sophisticated and efficient solution that enables users to monitor and control their garden's soil moisture levels, automate watering, and manage garden lights and decorations. This system is built using the NodeMcu board as the main controller, making it an excellent choice for IoT applications.
 
 ![a](https://github.com/dinethdf/IoT_base_Smart_Home_Garden/blob/main/web/img/img%20(3).JPG)
-![a](https://github.com/dinethdf/IoT_base_Smart_Home_Garden/blob/main/web/img/img%20(4).JPG)
-![a](https://github.com/dinethdf/IoT_base_Smart_Home_Garden/blob/main/web/img/img%20(5).JPG)
+![b](https://github.com/dinethdf/IoT_base_Smart_Home_Garden/blob/main/web/img/img%20(4).JPG)
+![c](https://github.com/dinethdf/IoT_base_Smart_Home_Garden/blob/main/web/img/img%20(5).JPG)
+![d](https://github.com/dinethdf/IoT_base_Smart_Home_Garden/blob/main/web/img/img%20(6).JPG)
 ### Key Features:
 
 1. **Soil Moisture Monitoring:**
