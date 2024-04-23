@@ -40,10 +40,6 @@ The IoT Garden Management System is a sophisticated and efficient solution that 
 - **Customizable Garden Control:**
   Users have the flexibility to set their preferred soil moisture ranges and customize the garden lighting and decorations, tailoring the system to their preferences.
 
-## Table of Contents
 
-- [Installation](#installation)
-- [Usage](#usage)
-- [Configuration](#configuration)
 
 
